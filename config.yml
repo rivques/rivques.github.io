@@ -71,3 +71,6 @@ menu:
       name: Things I Do
       url: /things-i-do/
       weight: 10
+
+staticDir:
+- docs
