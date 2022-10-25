@@ -1,9 +1,8 @@
 ---
-title: "Eng 3 CAD Notebook"
+title: "Engineering 3 CAD Notebook"
 date: 2022-10-25T11:34:49-04:00
 draft: false
 ---
-# Engineering 3 CAD notebook
 ## Propeller Toy/Collaborative Onshape
 ### Assignment
 For this assignment, two students were to create a small toy that would launch a propeller when you
