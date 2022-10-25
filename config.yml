@@ -73,7 +73,7 @@ menu:
       name: Bakkesmod
       url: /bakkesmod
       weight: 10
-      - identifier: high-school-engineering
+    - identifier: high-school-engineering
       name: High School Engineering
       url: /high-school-engineering
       weight: 20
