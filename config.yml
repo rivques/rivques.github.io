@@ -1,6 +1,6 @@
-baseURL: http://example.org/
+baseURL: https://rivques.github.io
 languageCode: en-us
-title: My New Hugo Site
+title: "rivques's Portfolio"
 theme: "PaperMod"
 
 params:
@@ -53,9 +53,9 @@ params:
 
   socialIcons:
     - name: discord
-      url: "https://twitter.com/"
+      url: "/discord"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/rivques"
 
 
   cover:
