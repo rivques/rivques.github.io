@@ -46,8 +46,12 @@ params:
     imageHeight: 120
     imageTitle: my logo
     buttons:
-      - name: High school engineering
+      - name: Bakkesmod
+        url: bakkesmod
+      - name: High School Engineering
         url: high-school-engineering
+      - name: Other Random Projects
+        url: other-random-projects
 
   # home-info mode
 
@@ -68,6 +72,14 @@ menu:
     - identifier: high-school-engineering
       name: High School Engineering
       url: /high-school-engineering
+      weight: 20
+    - identifier: bakkesmod
+      name: Bakkesmod
+      url: /bakkesmod
       weight: 10
+    - identifier: high-school-engineering
+      name: Other Random Projects
+      url: /other-random-projects
+      weight: 30
 
 pluralizelisttitles: "false"
