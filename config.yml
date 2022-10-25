@@ -1,6 +1,6 @@
 baseURL: https://rivques.github.io
 languageCode: en-us
-title: "rivques's Portfolio"
+title: "rivques's portfolio"
 theme: "PaperMod"
 
 params:
@@ -40,7 +40,7 @@ params:
   profileMode:
     enabled: true # needs to be explicitly set
     title: River Lewis/@rivques
-    subtitle: "Portfolio"
+    #subtitle: "Portfolio"
     imageUrl: logo.png
     imageWidth: 120
     imageHeight: 120
