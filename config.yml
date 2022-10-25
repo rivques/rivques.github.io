@@ -77,7 +77,7 @@ menu:
       name: High School Engineering
       url: /high-school-engineering
       weight: 20
-    - identifier: high-school-engineering
+    - identifier: other-random-projects
       name: Other Random Projects
       url: /other-random-projects
       weight: 30
