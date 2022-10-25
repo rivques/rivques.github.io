@@ -69,14 +69,14 @@ params:
 
 menu:
   main:
-    - identifier: high-school-engineering
-      name: High School Engineering
-      url: /high-school-engineering
-      weight: 20
     - identifier: bakkesmod
       name: Bakkesmod
       url: /bakkesmod
       weight: 10
+      - identifier: high-school-engineering
+      name: High School Engineering
+      url: /high-school-engineering
+      weight: 20
     - identifier: high-school-engineering
       name: Other Random Projects
       url: /other-random-projects
