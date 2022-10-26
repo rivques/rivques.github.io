@@ -10,7 +10,7 @@ For this assignment, we just had to make the onboard neopixel change colors.
 ### Code
 The code is available at [neopixel.py](https://github.com/rivques/CircuitPython/blob/master/neopixel.py). For the sake of space it will not be pasted in full here.
 ### Media
-![The project in action](/docs/neopixel.gif)
+![The project in action](/docs/neopixel.gif "The project in action.")
 ### Reflection
 This assignment was just a test to make sure that everything was running correctly. While there was an optional assignment to make the NeoPixel rainbow, I chose not to do it because I wanted to move on to the other assignments. I felt I could accomplish more interesting things this way.
 ## `servo.py`, `internet_servo.py`
@@ -20,9 +20,9 @@ For this assignment, we had to make a servo sweep across its length. There was a
 ### Code
 The code is available at [servo.py](https://github.com/rivques/CircuitPython/blob/master/servo.py) and [internet_servo.py](https://github.com/rivques/CircuitPython/blob/master//internet_servo.py). For the sake of space it will not be pasted in full here.
 ### Circuitry
-![The circuitry](/docs/servocircuit.png)
+![The circuitry](/docs/servocircuit.png "A diagram of the circuit. Note that the UNO should be a Metro M4 Airlift; the circuitry software didn't have that board.")
 ### Media
-![The project in action](/docs/internet-servo.gif)
+![The project in action](/docs/internet-servo.gif "The project in action. Sorry for the shaky video, it's somewhat difficult to control a computer, hold a phone, and keep the servo in shot.")
 ### Reflection
 I ran into a bit of trouble making the servo cross its full range of motion. It turns out that the servos we have need a slightly wider pulse range than default. This was a good exercise in troubleshooting and learning from documentation. 
 ## `hcsr04.py`
@@ -34,9 +34,9 @@ For this assignment, we had to make the NeoPixel on board the Metro change color
 ### Code
 The code is available at [hcsr04.py](https://github.com/rivques/CircuitPython/blob/master//hcsr04.py). For the sake of space it will not be pasted in full here.
 ### Circuitry
-![The circuitry](/docs/hcsr04circuit.png)
+![The circuitry](/docs/hcsr04circuit.png "A diagram of the circuit.")
 ### Media
-![The project in action](/docs/hc-sr04.gif)
+![The project in action](/docs/hc-sr04.gif "The project in action.")
 ### Reflection
 Originally, I tried to make a method that was very easy to extend and modify, but it ended up taking too much time for a non-functional product. I pivoted to doing it the easy-to-write, hard-to-modify way and finished it in no time. Sometimes this is a necessary sacrifice to make but it requires knowledge of the future uses of the project.
 ## `lcd.py`, `internet_lcd.py`
@@ -46,8 +46,8 @@ For this assignment, we had to make 1 or 2 LCD screens display a count that was 
 ### Code
 The code is available at [lcd.py](https://github.com/rivques/CircuitPython/blob/master//lcd.py) and [internet_lcd.py](https://github.com/rivques/CircuitPython/blob/master//internet_lcd.py). For the sake of space it will not be pasted in full here.
 ### Circuitry
-![The circuitry](/docs/lcdcircuit.png)
+![The circuitry](/docs/lcdcircuit.png "A diagram of the circuit. Again, note that the board should be a Metro M4 Airlift.")
 ### Media
-![The project in action](/docs/IoT-LCD.gif)
+![The project in action](/docs/IoT-LCD.gif "The project in action. The motor isn't doing anything, it just happened to be attached to a convenient place to mount 2 LCDs.")
 ### Reflection
 This went of relatively easily because of how adaptable my internet code is. I'm very proud of how simple it is to drop it into a new application and be up and running with only a few lines of code. I was also able to use a test bench I made last year to quickly detect the address of any given LCD screen, so it was nice to be able to reuse an old project as a useful time saver.
