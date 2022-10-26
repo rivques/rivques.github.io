@@ -33,6 +33,6 @@ This was another "Here's the drawings, good luck!" assignment. This one, however
 The document is available for viewing [here](https://cvilleschools.onshape.com/documents/ed3c96f86e2a8535b5e9c77b/w/da4a5a12cce6f82fbe864f02/e/842bff9739f4eecb64808e88?renderMode=0&uiState=6358002ab7948a2d7b5ab2d2).
 ### Media
 ![A screenshot of the part](/docs/multipart.png "An image of the full part.")
-![A section view of the part](/docs/multipart_section.png "A cross-section of the part. Note the plunger in the middle of the cylinder")
+![A section view of the part](/docs/multipart_section.png "A cross-section of the part. Note the plunger in the middle of the cylinder.")
 ### Reflection
 I really enjoyed this project. The big challenge here was designing the parts in the correct order to make it easiest to preserve design intent. For example, the bolts holding the part together needed to extend 15 mm past each end, so it made sense to design them after the cap parts to enforce this relationship. Then, when a revision pushed the caps farther apart, the bolts automatically expanded to preserve design intent.
