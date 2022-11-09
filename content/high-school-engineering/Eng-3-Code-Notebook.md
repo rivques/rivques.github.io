@@ -59,6 +59,6 @@ The code is available at [motor.py](https://github.com/rivques/CircuitPython/blo
 ### Circuitry
 ![The circuitry](/docs/motorcircuit.png "A diagram of the circuit.")
 ### Media
-![The project in action](/docs/motor.gif "")
+![The project in action](/docs/motor.gif "The project in action. The console is not visible, but it's printing the (low!) error between requested speed and actual speed.")
 ### Reflection
 This project was really helpful for my understanding of some basic control theory. While I've worked with PID controllers and encoders before, they've always been pre-implemented and I haven't had to go too deep in the weeds. I rewrote this code at least 3 times. The first rewrite I implemented async code and interrupts instead of synchronously polling the photointerrupter. The second time I changed from looking at how many pulses had occurred over the last second to looking at the average time between pulses, which proved to be much more accurate and responsive. I found [this website](https://www.motioncontroltips.com/what-type-of-encoder-can-be-used-to-measure-speed/) to be extremely helpful in providing methods of measuring the speed of the motor.
