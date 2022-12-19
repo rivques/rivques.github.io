@@ -33,6 +33,15 @@ This was another "Here's the drawings, good luck!" assignment. This one, however
 The document is available for viewing [here](https://cvilleschools.onshape.com/documents/ed3c96f86e2a8535b5e9c77b/w/da4a5a12cce6f82fbe864f02/e/842bff9739f4eecb64808e88?renderMode=0&uiState=6358002ab7948a2d7b5ab2d2).
 ### Media
 ![A screenshot of the part](/docs/multipart.png "An image of the full part.")
-![A section view of the part](/docs/multipart_section.png "A cross-section of the part. Note the plunger in the middle of the cylinder")
+![A section view of the part](/docs/multipart_section.png "A cross-section of the part. Note the plunger in the middle of the cylinder.")
 ### Reflection
 I really enjoyed this project. The big challenge here was designing the parts in the correct order to make it easiest to preserve design intent. For example, the bolts holding the part together needed to extend 15 mm past each end, so it made sense to design them after the cap parts to enforce this relationship. Then, when a revision pushed the caps farther apart, the bolts automatically expanded to preserve design intent.
+## Assembly Certification
+### Assignment
+We were given an Onshape course to take that was mostly review, with a few new things. The Onshape course was called Onshape Assemblies.
+### Documents
+The documents I worked in are available [here](https://cvilleschools.onshape.com/documents/98865048963a626fb957a070/w/c3648ca7bc4d541dbb98e8cf/e/d31e6c54f34819af53c38c06?renderMode=0&uiState=636bd6b14fc2c0216060919c), [here](https://cvilleschools.onshape.com/documents/4fda189f4ac251f4cc702242/w/39f9b49e0d3257bf430e0aae/e/f992ff64faeb9f62b945c37f?renderMode=0&uiState=636bd6bb141932307e323fdf), and [here](https://cvilleschools.onshape.com/documents/36902ce982bb8ecf85415c60/w/23049a0c82c7ce8fecea785d/e/9c485068c1c0c8d823f79ba9?renderMode=0&uiState=636bd6c6e59a127e33e108d0).
+### Media
+![My certification](/docs/assemblycert.png "My certification.")
+### Reflection
+This course was a nice refreshed for the various types of mates, and there was an extremely helpful chart provided [here](https://learn.onshape.com/learn/course/fundamentals-onshape-assemblies/mating-assembly-components/onshape-mate-types?page=3). The big thing I learned was how to make new mate connectors between entities, and I look forward to applying this in the future.
