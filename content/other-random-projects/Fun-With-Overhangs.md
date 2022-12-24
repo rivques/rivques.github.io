@@ -58,3 +58,28 @@ for theta_deg in (0..(360*(diameter/2.0/line_width).floor() as i32)).step_by(5) 
 ```
 After I had a circle, it was easy to stack a few on top of each other, and now I was making cylinders!
 ![A small blue circle of plastic and a larger cylinder](/docs/fun-with-overhangs/first-circle.jpg "The first circle I printed next to a cylinder of stacked circles.")
+## Mushrooms
+By stacking cylinders, I was able to generate a mushroom. This was the first time I actually did any supportless overhangs. I made
+some guesses at how much overlap would be needed, which were close but not quite right:
+![A mushroom with sagging filament and a rough surface](/docs/fun-with-overhangs/sad-mushroom.JPG "The first overhang I tried.")
+There were two main problems here: First of all, some filament had sagged under the overhang. I tightened up the line spacing on the
+overhang layer and this problem went away. The bigger problem, though, is that uneven and wavy top surface. I think this is caused by
+the overhang layer warping upwards, so I'm effectively trying to fill a funnel and expecting it to be a cylinder. This results in uneven
+distribution of plastic around the edge of the cylinder. For the next attempt, I manually lowered the flow rate for the upper cylinder
+when the printer was printing at the edges until a normal flat layer was created. This was boring and tedious, but it resulted in a nice
+top finish:
+![A mushroom](/docs/fun-with-overhangs/manual-mushroom.JPG "I sat in front of my printer for far too long getting this to work.")
+Encouraged, I tried stacking another mushroom to create another mushroom. The funnel-filling problem did not magically disappear
+as I'd hoped, so over a couple of attempts I had the G-code generator trail the flow off towards the edge of the circle. It took
+a few tries to get this right:
+![Three failed double mushrooms](/docs/fun-with-overhangs/sad-double-mushrooms.JPG "Failed attempts at double mushrooms. The leftmost one has nearly the right flow variance algorithm, but I misplaced a negative sign which caused more flow on the edge.")
+![A very not dense double mushroom](/docs/fun-with-overhangs/weak-double-mushroom.JPG "This mushroom printed the entire cap with the flow decay, which resulted in weak and translucent layers.") 
+I was able to tune the layers with decayed flow so there was only as many as needed to get a flat layer. There's probably more room for improvement in the algorithm, but I'm happy with where I ended up.
+![Two nice double mushrooms](/docs/fun-with-overhangs/nice-double-mushrooms.JPG "Tuning the thickness of the decayed-flow layers. They are visible as light bands near the bottom of the middle and top cylinders.")
+## To Bigger and Better Things
+Now that I had some nice mushroom-generating code, I tried to change some of the parameters to better fit my initial roller design.
+I had to abort the first print out of the printer:
+![A larger failed single mushroom](/static/docs/fun-with-overhangs/sad-big-mushroom.JPG "The issues are back! Turns out they have to be tuned for each size of mushroom.")
+This is where I'm at now. I haven't had the motivation to try and fix this or guess at parameters for different sized mushrooms. I'm happy with how far I've come, and I may try to change the design to use the rollers I can produce. I really enjoyed using Rust and will continue to learn it and use it where I can. I specifically found the transparent file handling (It just automatically unloads when it goes out of scope!) and helpful errors (Does
+*any other language* tell you exactly how to fix the error you caused?) very nice to use. I might return to this project and G-code generator, but it's
+more likely I'll use what I learned here to inform other experimental 3D printing projects.
