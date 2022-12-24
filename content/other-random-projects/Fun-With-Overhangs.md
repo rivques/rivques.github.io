@@ -1,7 +1,7 @@
 ---
 title: "Fun With Overhangs"
-date: 2022-12-19T17:16:29-0500
-draft: true
+date: 2022-12-24T17:16:29-0500
+draft: false
 math: true
 ---
 Overhangs are annoying. When 3D printing, you must be cautious to avoid
