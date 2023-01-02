@@ -76,10 +76,18 @@ a few tries to get this right:
 ![A very not dense double mushroom](/docs/fun-with-overhangs/weak-double-mushroom.JPG "This mushroom printed the entire cap with the flow decay, which resulted in weak and translucent layers.") 
 I was able to tune the layers with decayed flow so there was only as many as needed to get a flat layer. There's probably more room for improvement in the algorithm, but I'm happy with where I ended up.
 ![Two nice double mushrooms](/docs/fun-with-overhangs/nice-double-mushrooms.JPG "Tuning the thickness of the decayed-flow layers. They are visible as light bands near the bottom of the middle and top cylinders.")
+## Spiral Easing
+Because the toolpath is generated from a spiral, the circumference is not consistent and has a sharp jump where the spiral ends. After playing
+around in [this Desmos calculator](https://www.desmos.com/calculator/ydlczqiq08) I found a polar equation that nicely averaged between the spiral
+and a perfect circle:
+![A circle filled by a spiral](/docs/fun-with-overhangs/circle-spiral-gen.png "Here, the red line is the target circle, the blue line is the normal spiral, the black line is the outline of the actual printed plastic, and the green line is a line to circularize the spiral.")
+This isn't perfect in practice, and I end sometimes end up with a small blob on the seam. I think this is due to the pressure at the end of my
+Bowden tube lagging behind the pressure caused by the extruder. This is fine when the line width is constant, but with a varying line width like
+this, the printer is extruding too much filament at a given spot because the pressure at the hotend is from a few millimeters ago. I might be able
+to mitigate this by using a direct drive extruder or by decreasing the flow multiplier for the ease (though I'm hesitant to hardcode such a printer-dependant factor).
 ## To Bigger and Better Things
 Now that I had some nice mushroom-generating code, I tried to change some of the parameters to better fit my initial roller design.
 I had to abort the first print out of the printer:
-![A larger failed single mushroom](/static/docs/fun-with-overhangs/sad-big-mushroom.JPG "The issues are back! Turns out they have to be tuned for each size of mushroom.")
-This is where I'm at now. I haven't had the motivation to try and fix this or guess at parameters for different sized mushrooms. I'm happy with how far I've come, and I may try to change the design to use the rollers I can produce. I really enjoyed using Rust and will continue to learn it and use it where I can. I specifically found the transparent file handling (It just automatically unloads when it goes out of scope!) and helpful errors (Does
-*any other language* tell you exactly how to fix the error you caused?) very nice to use. I might return to this project and G-code generator, but it's
-more likely I'll use what I learned here to inform other experimental 3D printing projects.
+![A larger failed single mushroom](/docs/fun-with-overhangs/sad-big-mushroom.JPG "The issues are back! Turns out they have to be tuned for each size of mushroom.")
+This is where I'm at now. I've somewhat run out of time to work on this, and I haven't yet tried to guess at better parameters for different sized mushrooms. I'm happy with how far I've come, and I may try to change the design to use the rollers I can produce. I really enjoyed using Rust and will continue to learn it and use it where I can. I specifically found the seamless file handling (It just automatically unloads when it goes out of scope!) and helpful errors (Does
+*any other language* tell you *exactly* how to fix the error you caused?) very nice to use. I might return to this project and G-code generator, but it's more likely I'll use what I learned here to inform other experimental 3D printing projects.
