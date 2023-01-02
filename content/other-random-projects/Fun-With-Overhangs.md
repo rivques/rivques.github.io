@@ -1,6 +1,6 @@
 ---
 title: "Fun With Overhangs"
-date: 2022-12-24T17:16:29-0500
+date: 2022-12-24T17:16:29-05:00
 draft: false
 math: true
 ---
