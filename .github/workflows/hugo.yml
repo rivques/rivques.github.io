@@ -26,9 +26,36 @@ defaults:
     shell: bash
 
 jobs:
+  # first, bring in updates from submodules
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - run: git submodule update --remote
+    - name: copy docs into parent
+      run: |
+        for d in "project-submodules"
+        do
+          echo "Processing $d ..."
+          mkdir -p "/content/high-school-engineering/$d"
+          cp -f "$d/docs/index.md" "/content/high-school-engineering/$d/index.md"
+          mkdir -p "/static/docs/$d"
+          cp -f "$d/docs/*" "/static/docs/$d"
+        end
+    - name: commit changes
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "update submodule pages"
+        git push
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: update-submodules
     env:
       HUGO_VERSION: 0.102.3
     steps:
