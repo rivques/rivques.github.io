@@ -44,7 +44,7 @@ jobs:
           cp -f "$d/docs/index.md" "/content/high-school-engineering/$d/index.md"
           mkdir -p "/static/docs/$d"
           cp -f "$d/docs/*" "/static/docs/$d"
-        end
+        done
     - name: commit changes
       run: |
         git config user.name github-actions
