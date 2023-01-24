@@ -37,13 +37,13 @@ jobs:
     - run: git submodule update --remote
     - name: copy docs into parent
       run: |
-        for d in project-submodules/*/
+        for d in ./project-submodules/*/
         do
           echo "Processing $d ..."
           mkdir -p "content/high-school-engineering/$d"
-          cp -f "$d/docs/index.md" "content/high-school-engineering/$d/index.md"
+          cp -f "${d}docs/index.md" "content/high-school-engineering/${d}index.md"
           mkdir -p "static/docs/$d"
-          cp -f "$d/docs/*" "static/docs/$d"
+          cp -f "${d}docs/*" "static/docs/$d"
         done
     - name: commit changes
       run: |
