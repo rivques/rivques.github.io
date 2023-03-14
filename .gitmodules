@@ -1,3 +1,6 @@
 [submodule "themes/PaperMod"]
 	path = themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule ".\\project-submodules\\AutoMusicBoxHolePuncher"]
+	path = .\\project-submodules\\AutoMusicBoxHolePuncher
+	url = https://github.com/rivques/AutoMusicBoxHolePuncher/

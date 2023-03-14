@@ -62,3 +62,18 @@ The code is available at [motor.py](https://github.com/rivques/CircuitPython/blo
 ![The project in action](/docs/motor.gif "The project in action. The console is not visible, but it's printing the (low!) error between requested speed and actual speed.")
 ### Reflection
 This project was really helpful for my understanding of some basic control theory. While I've worked with PID controllers and encoders before, they've always been pre-implemented and I haven't had to go too deep in the weeds. I rewrote this code at least 3 times. The first rewrite I implemented async code and interrupts instead of synchronously polling the photointerrupter. The second time I changed from looking at how many pulses had occurred over the last second to looking at the average time between pulses, which proved to be much more accurate and responsive. I found [this website](https://www.motioncontroltips.com/what-type-of-encoder-can-be-used-to-measure-speed/) to be extremely helpful in providing methods of measuring the speed of the motor.
+## `encoder_trafficlight.py`
+### Assignment
+For this assignment, we had to make a "traffic light" out of the onboard NeoPixel controlled by a rotary encoder and a menu on the LCD. The rotary encoder was to scroll through color options and clicking the switch was to set the NeoPixel to the selected color.
+### Code
+The code is available at [encoder_trafficlight.py](https://github.com/rivques/CircuitPython/blob/master/encoder_trafficlight.py). For the sake of space it will not be pasted in full here.
+### Circuitry
+![The circuitry](/docs/trafficlight_circuit.png "A diagram of the circuit.")
+### Media
+![The project in action](/docs/trafficlight.gif "The project in action. It's hard to see, but I'm rotating and clicking the rotary encoder.")
+### Reflection
+I'm really proud of how I did the menu logic for this project. The encoder library gives a position in "clicks from startup position." I have a list of menu strings and colors, like this:
+```python
+colors = [("stop", (255, 0, 0)), ("caution", (128, 128, 0)), ("go", (0, 255, 0))]
+```
+Then, to get the color I should be using, I can simply take the element of the list at `encoder.position % len(colors)`. This will smoothly loop around the list. Also, once again, our hardware is not quite the default configuration. This means in the initialization of the encoder library I have to set the `divisor` argument of the `rotaryio.IncrementalEncoder` to 2 instead of 4.
