@@ -77,3 +77,14 @@ I'm really proud of how I did the menu logic for this project. The encoder libra
 colors = [("stop", (255, 0, 0)), ("caution", (128, 128, 0)), ("go", (0, 255, 0))]
 ```
 Then, to get the color I should be using, I can simply take the element of the list at `encoder.position % len(colors)`. This will smoothly loop around the list. Also, once again, our hardware is not quite the default configuration. This means in the initialization of the encoder library I have to set the `divisor` argument of the `rotaryio.IncrementalEncoder` to 2 instead of 4.
+## `tmp36.py`
+### Assignment
+For this assignment, we had to display the current temperature on an LCD as measured by a TMP36 temperature sensor.
+### Code
+The code is available at [tmp36.py](https://github.com/rivques/CircuitPython/blob/master/tmp36.py). For the sake of space it will not be pasted in full here.
+### Circuitry
+![The circuitry](/docs/tmp36_circuit.png "A diagram of the circuit.")
+### Media
+![The project in action](/docs/tmp36.gif "The project in action. When I put my finder on the sensor I get a higher temperature reading.")
+### Reflection
+The first time I tried this I ended up superheating a TMP36. It was the end of the period, so I didn't have time to analyze my likely wiring mistake, and it worked fine the next class, but my bet is that I had power and ground flipped around. Ironically, the datasheet of the TMP36 advertises its "low self-heating," a claim which absolutely did not hold up under abuse. I thought I had double checked the orientation of the sensor, but I evidently got it wrong. It was a very tangible reminder to always, *always*, ALWAYS check polarity.
