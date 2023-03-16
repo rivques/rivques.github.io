@@ -81,5 +81,9 @@ menu:
       name: Other Random Projects
       url: /other-random-projects
       weight: 30
+    - identifier: fencing
+      name: Fencing
+      url: /fencing-ref-practice.html
+      weight: 40
 
 pluralizelisttitles: "false"
