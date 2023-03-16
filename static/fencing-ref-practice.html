@@ -12,7 +12,7 @@
         </style>
     </head>
     <body>
-    <h1>Fencing Referee Hand Signal Practice</h1>
+    <h1>Fencing Referee Hand Signal Practice v0.2</h1>
     <h2>By <a href="rivques.github.io">rivques</a>, <i>very</i> work in progress</h2>
     <h3>Something I threw together to help me practice my hand signal memorization; click the button then speak/signal the actions</h3>
     <p>You can practice translating words to hand signals, hand signals to words coming soon&#8482;</p>
@@ -84,7 +84,7 @@
                     } else {
                         // is remise by first fencer
                         row = -row
-                        sequence += ` remise-${side(row)}`
+                        sequence += ` no-${oppside(row)} remise-${side(row)}`
                     }
                 }
 
@@ -106,7 +106,7 @@
                     } else {
                         // is remise by first fencer
                         row = -row
-                        sequence += ` remise-${side(row)}`
+                        sequence += ` no-${oppside(row)} remise-${side(row)}`
                     }
                 }
             }
@@ -138,7 +138,7 @@
             } else {
                 // is remise by first fencer
                 row = -row
-                sequence += ` remise-${side(row)}`
+                sequence += ` no-${oppside(row)} remise-${side(row)}`
             }
         }
 
