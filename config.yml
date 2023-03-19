@@ -83,7 +83,7 @@ menu:
       weight: 30
     - identifier: fencing
       name: Fencing
-      url: /fencing-ref-practice.html
+      url: /fencing
       weight: 40
 
 pluralizelisttitles: "false"

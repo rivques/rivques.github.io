@@ -1,31 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Fencing Referee Practice</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link href="css/style.css" rel="stylesheet"> -->
-        <style>
-            * {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-    <h1>Fencing Referee Hand Signal Practice</h1>
-    <h2>By <a href="rivques.github.io">rivques</a>, <i>very</i> work in progress</h2>
-    <h3>Something I threw together to help me practice my hand signal memorization; click the button then speak/signal the actions</h3>
-    <p>You can practice translating words to hand signals, hand signals to words coming soon&#8482;</p>
-    <!-- <label for="showflashcards">Show signals</label>
-    <input type="checkbox" id="showflashcards" name="showflashcards" checked>
-    <label for="showwords">Show words</label>
-    <input type="checkbox" id="showwords" name="showwords">
-    <div id="flashcards">
-    </div> -->
-    <button id="regen" onclick="document.getElementById('words').textContent=generateSequence()">
+---
+title: "Fencing Ref Practice"
+date: 2023-03-18T21:45:33-0400
+draft: false
+showToc: false
+---
+## Very work in progress
+## Click the button then speak/signal the actions
+You can practice translating words to hand signals, hand signals to words coming soon&#8482;
+
+{{<rawhtml>}}
+<button id="regen" onclick="document.getElementById('words').textContent=generateSequence()" style="all: revert">
         New sequence
     </button>
-    <br><br>
     <div id="words">
         
     </div>
@@ -155,5 +141,4 @@
         return "AA SEQ FAILED"
     }
     </script>
-    </body>
-</html>
+{{</rawhtml>}}

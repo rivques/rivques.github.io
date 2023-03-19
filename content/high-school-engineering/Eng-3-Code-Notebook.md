@@ -1,6 +1,6 @@
 ---
 title: "Engineering 3 Code Notebook"
-date: 2022-10-25T11:34:44-04:00
+date: 2022-10-25T11:34:44-0400
 draft: false
 ---
 ## `neopixel.py`

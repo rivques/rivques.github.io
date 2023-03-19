@@ -1,6 +1,6 @@
 ---
 title: "Engineering 3 CAD Notebook"
-date: 2022-10-25T11:34:49-04:00
+date: 2022-10-25T11:34:49-0400
 draft: false
 ---
 ## Propeller Toy/Collaborative Onshape
