@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--This is hosting github.com/rivques/familytree-viewer. It's not part of the rest of the site, I just needed to host it somewhere-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family Tree</title>
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #tree-container {
+            cursor: grab;
+            overflow: visible;
+            padding: 10px;
+        }
+
+        #card-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            background-color: rgba(128, 128, 128, .5);
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        #card {
+            display: none;
+            background-color: lightseagreen;
+            width: 40vw;
+            height: 40vh;
+            overflow: auto;
+            border-radius: 4px;
+        }
+
+        #file-prompt {
+            background-color: lightseagreen;
+            width: 40vw;
+            height: 40vh;
+            overflow: auto;
+            border-radius: 4px;
+        }
+
+        #card-portrait {
+            max-width: 20vw;
+            max-height: 20vh;
+            float: left;
+            border-radius: 4px dashed black;
+        }
+
+        #card-x {
+            max-width: 10vw;
+            max-height: 10vh;
+            float: right;
+            border-radius: 4px;
+        }
+
+        .person {
+            position: absolute;
+            background-color: lightgreen;
+            width: 150px;
+            height: fit-content;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .person img {
+            box-sizing: border-box;
+            padding: 12px 12px 0px 12px;
+            width: 100%;
+            aspect-ratio: 0.8;
+            object-fit: contain;
+        }
+
+        .rectangle {
+            position: absolute;
+            background-color: black;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tree-container">
+    </div>
+    <div id="card-container">
+        <div id="file-prompt">
+            <h1>Family Tree Viewer</h1>
+            <h2>Pan and zoom around with the mouse, and click on people to see a little more about them!</h2>
+            <h2>Please select your family tree file:</h2>
+            <input type="file" id="json-file" accept="application/json">
+        </div>
+        <div id="card">
+            <img id="card-portrait" src="no-image.png">
+            <img id="card-x"
+                src="data:image/webp;base64,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"
+                onclick="onCardExit()">
+            <h1 id="card-name"></h1>
+            <h2 id="card-lifetime"></h2>
+            <!--<h3 id="card-rel-to-root"></h3>-->
+            <p id="card-blurb"></p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+    <script>
+        const HORIZ_SPACING = 100;
+        const VERT_SPACING = 388;
+        const LINE_THICKNESS = 10;
+        const COUPLE_LINE_TOP_OFFSET = 100;
+        const NO_IMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMUAAAD/CAMAAAB2B+IJAAAAVFBMVEWVlZX///+SkpLV1dWMjIyPj4/c3NzKysr09PT6+vrr6+uqqqqkpKSXl5eampr29vbAwMC2trbk5OTPz8/Y2Ni6urrExMSpqanm5ubf39+wsLCfn59bo+KpAAAHIElEQVR4nO2dCXbqMAxFg7GBMJaxFPa/z0+ghdKGRLP1e/w2kNxjS7Zkya4Gf0FV7h8QUaHwI22KenRYz+bz2fptO5qqfUWXYjiPKXwqpRQXp8NoovAdTYphSKF61gUmhvVO+kt6FJN5qtp1IVnLjogaxTD+HIcnkHiQ/JgWxTp2MDRKa8Gv6VBMll0DcVMcy31PhWLXOZvuGHK2oUHRO5s+beMs9kV5io8KMhCN0pvUN6UpVifYQNzmlJRpyFLUbyCLeGAI+VtJigmSoZlUJ5Evy1GMZmiGi0K1Efi2EMXHPv3aMwEV1zX78wIUx/F7pCJch4NvHVyK4bnZe9MRbhyJ6ayYFGOEX+1SCsN8FEMhiIZjecxEMZKDuCjus1BMRSEar0uNzBkU9atYjq5ItA4GxZnrmtowaM6KTrFWgLhgbE0ptsJGcceg2AaVQtqy7yLFTkSKWmU6XZUI2SoixVyPoiIMBo3iTd7JPkSwDBKF4MajRQG/hlMojqoQF8uwoFBzT3cKdPiHp1CHqAI6+Ymm2KhDEKYUlkIqLOqmGKlSrF6eSYgqzBQpsDkzuuJKi6LecxIdOAXkBh1OAU4ii2AoUXyYWMSXEi7oA1NsTSmq5Z+gSB9/gQK3PwdTDI0pUIMBptgZU6AsA0wxsqbAuCmnnrYRYs1wTJHgxxp+ZxTmWN8zRXgXp7D2tI0iNM5wu+pdBTVwMMXBckt7pwAmdcAUOinyPkVYOgRMoZnT7JIsRSYI2JyCUtQWuY82gbK2UIpjDhfVKMwFKbI42qsi4BwcSpHHRTUKgOIjKMUiF8RlMMQoJrmMuwKl0IEU5pHed4r+cAlIkc8sLhT9iUIgRcahkBuLTVaKflcLo9hnnFCQMxkYRU6IAKiABlHoH+V1KAFKPEEUGWLuBwSkSAdEkXG1gB2OgSjsc1F3LSD/590ugCkpmI/KFiIBUzkwikxBN7jNBEYxzkIBL1uDUeQxDPE8bY4gCVEnBaTIMaUQnXB+Yz1Q8gNHMXg3H4yA6C2BUmQ4StI417OGQNXVginGf+KMVaFPoVuQ6AhNYR+1Imoo4BTmzlZ+vWg0Mx4MRPsbgsKiBvVJ8CmFqX5cGlPAayAxFObFReCyWlQ9rTUF2DBQFG+29g1fMVAUxs4Wvh/EVWjbxt+ghBqBwja9BkiWkyhs7RvewICksDxTQmwHkRSWeWdE4T+2i8TOSyHKBtEUZvE3qhMU3dFjNaVQNxphKaxCvqhTLf8lm8o7ZLc6vl/PYjCw15XhKQwGA5MWJFIYVK3BjsFYFPrrN/7CNYfduOCKZhbF4KwKkQhXtFAodGsIcd1hdIqV5pSyu0lDMeQjXBdApVDcTOFvCyBT6HkpeKjNp9DbhSC7cHkUWlEG9X41GkWtdP4NKAAWpBhMVOYUzUHRKXSOAUhrBYdC46oceGebGIXCaQaup1uGQv62HHRYIUAxOAm7W+KKx6SQPgegbT64FMKDQXazTApZyyC7WSaFqJtC5z3EKCR36Mh7TAQpJO07cu495t1PK5dHoK/bfAq5PCFjsWBTyPWFJtajMcx7m8UoqJGFCIVY0EfJQolRSBkG+iY1UQqpAlX8FYOSFFJpQs4mik8h1QOXmUKomDDvjJIqmcpr3WJVOlk97WAqRJF11RMrDOHESAIUQpES5eZsQQqh4BtTG69AIVXXyTJvNoXUTipjrDeQ6x5jGQafQmo/yHn/iU0hVnzOSA16osAXTshRiBUicDaEbuwiW7b5RiGXzKFnB92seqxMLZtCsOaLviNkUwge4NOXDC972qvsT4q/JHkSQ7YML7HeTdScM5dCuPuNOKe4FNLHxYH07C+XQryOIli+wPUphXYryq6QSaFRWkt485BHodP5Firdd2F+aKVVPxjnOOvgUKyUGKrmpdmTZkfPN+kWaoe4h2dFyBSbpXZTDOLlX2r148zk9acATO/QKOweTpqDzINCMWQ/rwwXbFrhKY5n43dulv1eF911eLK/Saq/eQ9JMbYyiCelvoIdFMXHItMlkKFnp4ugWGWYTHd1v8MMp8gzmR4YXTtdKIX+Ut2n1HEkDqOo1znv2f1UR986iGJo9z5gl8Li1f4QQGH02CRAoXpxoUM/xTavVT8rtW+r+igmxvuNPrVj9FBkdq8tasXopPBjEd+UWmyji2LnwzX90m9P1UGRc8PRpRaH+5JiuvA5EFXjcH+2YbVT1DuvA3FTOo+nPRTHwzk6tYiHUkzz/Xi3mdQtFMfx7ELgHeGmEEJKMablE8V0PEvJ/SD8VrhTTLan5H8atetGUY/2i/+VoNGNYuhul4HTJ4XDbQZGhcKPCoUfFQo/KhR+VCj8qFD4UaHwo0LhR4XCjwqFHxUKPyoUflQo/KhQ+FGh8KNC4UeFwo8KhR8VCj8qFH5UKPyoUPhRofCjQuFHhcKPCoUfXSj+ATWMb6IpLhk+AAAAAElFTkSuQmCC"
+
+        class Relationship {
+            constructor(person, parents, children, sibling, partner) {
+                /** @type {Person} */
+                this.person = person;
+                /** @type {Person[]} */
+                this.parents = parents;
+                /** @type {Person[]} */
+                this.children = children;
+                /** @type {Person} */
+                this.sibling = sibling;
+                /** @type {Person} */
+                this.partner = partner;
+                this.partnerLineDrawn = false;
+                this.parentLineDrawn = false;
+            }
+            /** @param people {Person[]} */
+            static fromUUIDs(people, person, parents, children, sibling, partner) {
+                this.person = people.find(element => element.uuid == person);
+                this.parents = parents.map(uuid => people.find(element => element.uuid == uuid));
+                this.children = children.map(uuid => people.find(element => element.uuid == uuid));;
+                this.sibling = people.find(element => element.uuid == sibling);;
+                this.partner = people.find(element => element.uuid == partner);;
+            }
+            toJSON(key) {
+                return {
+                    person: this.person.uuid,
+                    parents: this.parents.map(p => p.uuid),
+                    children: this.children.map(c => c.uuid),
+                    sibling: this.sibling ? this.sibling.uuid : undefined,
+                    partner: this.partner ? this.partner.uuid : undefined
+                }
+            }
+            static fromJSON(json, people) {
+                let findPerson = (uuid) => uuid == null ? undefined : people.find((p) => p.uuid == uuid);
+                let result = new Relationship(findPerson(json.person), json.parents.map(p => findPerson(p)), json.children.map(p => findPerson(p)), findPerson(json.sibling), findPerson(json.partner))
+                return result;
+            }
+        }
+        class Person {
+            constructor(uuid, name, birth_year, death_year, blurb, portrait_path) {
+                if (arguments.length == 0) {
+                    this.explored = false;
+                    this.drawn = false;
+                    return; // pseudo overload
+                }
+                this.uuid = uuid;
+                this.name = name;
+                this.birth_year = birth_year;
+                this.death_year = death_year;
+                this.blurb = blurb;
+                this.portrait_path = portrait_path;
+                /** @type {Relationship} */
+                this.relationship = undefined;
+                /** @type {Person} */
+                this.onLeft = undefined;
+                this.level = undefined;
+                /** @type {Person} */
+                this.onRight = undefined;
+                this.childrenLoD = undefined;
+                this.explored = false;
+                this.drawn = false;
+                /** @type {HTMLElement} */
+                this.element = undefined;
+            }
+            toString() {
+                return `Person ${this.name}`;
+            }
+            static fromJson(json) {
+                return Object.assign(new Person(), json);
+            }
+        }
+        function yearsToLifetime(birth_year, death_year) {
+            return `${birth_year}-${!!death_year ? death_year : ""}`;
+        }
+        function safePath(portrait_path) {
+            return !!portrait_path ? portrait_path : NO_IMG;
+        }
+        let origLoc = { x: null, y: null };
+        let elem;
+        let panzoom;
+        let downListener = (e) => {
+            //console.log(`mouse down at ${e.clientX}, ${e.clientY}`)
+            origLoc.x = e.clientX;
+            origLoc.y = e.clientY;
+        }
+
+        let upListener = (e) => {
+            movedDist = Math.sqrt(Math.pow(origLoc.y - e.clientY, 2) + Math.pow(origLoc.x - e.clientX, 2))
+            // console.log(`mouseup detected, moved: ${movedDist}`);
+            if (movedDist > 10) {
+                //console.log('moved')
+            } else {
+                onPersonClick(e)
+            }
+        }
+        
+        function onPersonClick(e) {
+            let person = e.currentTarget.person;
+            let cardCont = document.getElementById("card-container");
+            elem.parentElement.removeEventListener('wheel', panzoom.zoomWithWheel);
+            cardCont.style.display = "flex"
+            document.getElementById("card-name").textContent = person.name;
+            document.getElementById("card-lifetime").textContent = yearsToLifetime(person.birth_year, person.death_year);
+            document.getElementById("card-blurb").textContent = person.blurb;
+            document.getElementById("card-portrait").src = safePath(person.portrait_path);
+        }
+        function onCardExit() {
+            elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+            document.getElementById('card-container').style.display = 'none';
+        }
+
+        function rect(x, y, width, height) {
+            if (height < 0) {
+                height = -height;
+                y -= height;
+            }
+            if (width < 0) {
+                width = -width;
+                x -= width;
+            }
+            console.log(`Drawing rect ${width} x ${height} at ${x}, ${y}`)
+            let outRect = document.createElement("div");
+            outRect.classList.add("rectangle");
+            outRect.style.left = x + "px";;
+            outRect.style.top = y + "px";;
+            outRect.style.width = `${width}px`;
+            outRect.style.height = `${height}px`;
+            return outRect;
+        }
+
+        function createPersonElement(person, x, y) {
+            console.log(`Drawing person ${person.name} at ${x}, ${y}`)
+            let newObj = document.createElement("div");
+            newObj.classList.add("person");
+            newObj.id = person.uuid;
+            newObj.style.left = x + "px";
+            newObj.style.top = y + "px";
+            newObj.innerHTML = `
+            <img src="${safePath(person.portrait_path)}">
+            <span class="person-name"><b>${person.name}</b></span>
+            <br>
+            <span class="lifetime">${yearsToLifetime(person.birth_year, person.death_year)}</span>
+            `;
+            newObj.person = person;
+            newObj.onpointerdown = downListener
+            newObj.addEventListener("click", upListener);
+            return newObj
+        }
+        /*
+        example tree:
+        parent ----- parent kBp parent-kBp parent     
+                 |                    |  
+        ------------------            |
+        |                |            |
+        kid A           kid B --- kid B's partner
+        only support two married children per person
+        */
+
+        function makeDoubleNeighbor(person, neighborA, neighborB) {
+            if (neighborA == undefined && neighborB == undefined) {
+                return;
+            }
+            if (neighborA == undefined) {
+                makeSingleNeighbor(person, neighborB);
+                return;
+            } else if (neighborB == undefined) {
+                makeSingleNeighbor(person, neighborA);
+                return;
+            }
+            if (neighborA.onLeft == person && neighborB.onRight == person) {
+                return;
+            }
+            if (neighborB.onLeft == person && neighborA.onRight == person) {
+                return;
+            }
+
+            if (isNeighborSlotAvailable(neighborA, person, true) && isNeighborSlotAvailable(neighborB, person, false)) {
+                neighborA.onLeft = person;
+                neighborB.onRight = person;
+                person.onLeft = neighborB;
+                person.onRight = neighborA;
+                return;
+            }
+            if (isNeighborSlotAvailable(neighborA, person, false) && isNeighborSlotAvailable(neighborB, person, true)) {
+                neighborB.onLeft = person;
+                neighborA.onRight = person;
+                person.onLeft = neighborA;
+                person.onRight = neighborB;
+                return;
+            }
+            // if we get here neighbors are incompatible
+            throw new Error(`No compatible neighbor slots while attempting to resolve ${person.name} with ${neighborA.name}, and ${neighborB.name}`);
+        }
+
+        function makeSingleNeighbor(personA, personB) {
+            if (personA.onLeft == personB || personA.onRight == personB) {
+                return;
+            }
+            if (isNeighborSlotAvailable(personB, personA, true) && isNeighborSlotAvailable(personA, personB, false)) {
+                personB.onLeft = personA;
+                personA.onRight = personB;
+            } else if (isNeighborSlotAvailable(personA, personB, true) && isNeighborSlotAvailable(personB, personA, false)) {
+                personB.onRight = personA;
+                personA.onRight = personB;
+            } else {
+                throw new Error(`No compatible neighbor slots while attempting to pair ${personA.name} and ${personB.name}`)
+            }
+        }
+
+        function isNeighborSlotAvailable(person, filler, isLeft) {
+            if (isLeft) {
+                return (person.onLeft == undefined || person.onLeft == filler)
+            } else {
+                return (person.onRight == undefined || person.onRight == filler)
+            }
+        }
+
+        function drawLineBetween(x1, y1, x2, y2) {
+            if (x1 == x2) {
+                document.getElementById("tree-container").appendChild(rect(x1 - LINE_THICKNESS / 2, y1, LINE_THICKNESS, y2 - y1));
+            } else if (y1 == y2) {
+                document.getElementById("tree-container").appendChild(rect(x1, y1 - LINE_THICKNESS / 2, x2 - x1, LINE_THICKNESS));
+            } else {
+                throw new Error(`Attempted to draw non-vertical line from (${x1},${y1}) to (${x2},${y2})`)
+            }
+        }
+
+        // let people = [
+        //         new Person("RP", "Root Person", 2000, null, "Root is the root person", null),
+        //         new Person("PR", "Parent of Root", 1976, null, "Let's see if relationships work", null),
+        //         new Person("OPR", "Other Parent of Root", 1978, 2048, "Let's see if relationships work", null),
+        //         new Person("SR", "Sibling of Root", 2003, null, "Let's see if siblings work", null),
+        //         new Person("PaR", "Partner of Root", 2001, null, "More complex trees!", null),
+        //         new Person("PoPar", "Parent of Partner of Root", 1970, null, "deeper tree", null),
+        //         new Person("SoPoPar", "SoPoPar", 1968, null, "even deeper tree", null)
+        //     ]
+        // people[0].relationship = new Relationship(people[0], [people[1], people[2]], [], people[3], people[4]);
+        // people[3].relationship = new Relationship(people[3], [people[1], people[2]], [], people[0]);
+        // people[1].relationship = new Relationship(people[1], [], [people[0], people[3]], undefined, people[2]);
+        // people[2].relationship = new Relationship(people[2], [], [people[0], people[3]], undefined, people[1]);
+        // people[4].relationship = new Relationship(people[2], [people[5]], [], undefined, people[0]);
+        // people[5].relationship = new Relationship(people[5], [], [people[4]], people[6]);
+        // people[6].relationship = new Relationship(people[6], [], [], people[5])
+        /** @type {Person[]} */
+        let people = [];
+
+        document.getElementById("json-file").onchange = async (e) => {
+            console.log("JSON file changed!")
+            if (e.currentTarget.files.length == 0) {
+                return;
+            }
+            const json = JSON.parse(await e.currentTarget.files[0].text())
+            console.log(json)
+            document.getElementById("file-prompt").style.display = "none";
+            document.getElementById("card").style.display = "block";
+            document.getElementById("card-container").style.display = "none";
+            // load tree from json? see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+            people = json.people.map(pJson => Person.fromJson(pJson))
+            for (const relJson of json.relationships) {
+                let relObj = Relationship.fromJSON(relJson, people);
+                if (relObj.person == undefined) {
+                    console.log(`JSON got undefined person: ${relJson}`);
+                    continue
+                }
+                relObj.person.relationship = relObj
+            }
+
+            for (let person of people) {
+                person.element = createPersonElement(person, person.x, person.y);
+                document.getElementById("tree-container").appendChild(person.element);
+            }
+            for (let person of people) {
+                const personPos = person.element.getBoundingClientRect()
+                if (!person.relationship.partnerLineDrawn && person.relationship.partner) {
+                    const p2DPos = person.relationship.partner.element.getBoundingClientRect()
+                    drawLineBetween((personPos.width / 2) + personPos.left, personPos.top + COUPLE_LINE_TOP_OFFSET, (p2DPos.width / 2) + p2DPos.left, personPos.top + COUPLE_LINE_TOP_OFFSET)
+                    person.relationship.partnerLineDrawn = true;
+                    person.relationship.partner.relationship.partnerLineDrawn = true;
+                }
+                if (!person.relationship.parentLineDrawn) {
+                    if (person.relationship.parents.length > 0 || person.relationship.sibling) {
+                        const lineLength = 80
+                        drawLineBetween((personPos.width / 2) + personPos.left - 5, personPos.top - lineLength, (personPos.width / 2) + personPos.left - 5, personPos.top)
+                        let parentX;
+                        let parentY;
+                        if (person.relationship.parents.length == 1) {
+                            const parentPos = person.relationship.parents[0].element.getBoundingClientRect()
+                            parentX = parentPos.left + parentPos.width / 2 - 5
+                            parentY = parentPos.top
+                            drawLineBetween(parentX, parentY, parentX, personPos.top - lineLength)
+                        } else if (person.relationship.parents.length == 2) {
+                            const parentAPos = person.relationship.parents[0].element.getBoundingClientRect()
+                            const parentBPos = person.relationship.parents[1].element.getBoundingClientRect()
+                            parentX = Math.abs(parentAPos.left - parentBPos.right) / 2 + parentAPos.left
+                            parentY = parentAPos.top + COUPLE_LINE_TOP_OFFSET
+                            drawLineBetween(parentX, parentY, parentX, personPos.top - lineLength)
+                        }
+                    }
+                    if (person.relationship.sibling) {
+                        const siblingPos = person.relationship.sibling.element.getBoundingClientRect()
+                        const lineLength = 80
+                        drawLineBetween((siblingPos.width / 2) + siblingPos.left-5, siblingPos.top - lineLength, (siblingPos.width / 2) + siblingPos.left-5, siblingPos.top)
+                        person.relationship.sibling.relationship.parentLineDrawn = true;
+                        drawLineBetween((siblingPos.width / 2) + siblingPos.left, siblingPos.top - lineLength + 5, (personPos.width / 2) + personPos.left, personPos.top - lineLength + 5)
+                    }
+                    person.relationship.parentLineDrawn = true;
+                }
+            }
+            elem = document.getElementById('tree-container');
+            panzoom = Panzoom(elem, {
+                maxScale: 5,
+            });
+            setTimeout(() => panzoom.pan(850, 850), 0.2)
+            panzoom.zoom(.75);
+            elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+            // this needs to be separated into steps:
+            // one: build tree and figure out broad x and y (i.e. tree levels and order within level)
+            // first: siblings adjacent, then sibling's partners on the outside of that
+            // then: siblings parents level above, parent's siblings to their outside
+            // each person has optional neighbors on their level, their partner and their sibling
+            // this can then be sorted into an array for each level
+            function explorePerson(person) {
+                if (person.explored) {
+                    console.log(`aborting exploration of ${person.name} because they have already been explored`);
+                    return;
+                }
+                let peopleToExplore = [];
+                makeDoubleNeighbor(person, person.relationship.sibling, person.relationship.partner)
+                if (person.relationship.sibling != undefined && !person.relationship.sibling.explored) {
+                    person.relationship.sibling.level = person.level
+                    peopleToExplore.push(person.relationship.sibling)
+                }
+                if (person.relationship.partner != undefined && !person.relationship.partner.explored) {
+                    person.relationship.partner.level = person.level
+                    peopleToExplore.push(person.relationship.partner)
+                }
+
+                console.assert(person.relationship.parents.length <= 2, `${person.name} has more than 2 parents!`);
+                const numParentsExplored = person.relationship.parents.filter(parent => parent.explored).length
+                if (numParentsExplored < person.relationship.parents.length) {
+                    // we need to explore at least one parent
+                    if (person.relationship.parents.length == 1) {
+                        person.relationship.parents[0].level = person.level - 1;
+                        peopleToExplore.push(person.relationship.parents[0])
+                    } else {
+                        person.relationship.parents[0].level = person.level - 1;
+                        person.relationship.parents[1].level = person.level - 1;
+                        makeSingleNeighbor(person.relationship.parents[0], person.relationship.parents[1])
+                        peopleToExplore.push(person.relationship.parents[0]);
+                        peopleToExplore.push(person.relationship.parents[1]);
+                    }
+                }
+
+                console.assert(person.relationship.children.length <= 2, `${person.name} has more than 2 children!`);
+                const numChildrenExplored = person.relationship.children.filter(child => child.explored).length
+                if (numChildrenExplored < person.relationship.children.length) {
+                    // we need to explore at least one parent
+                    if (person.relationship.children.length == 1) {
+                        person.relationship.children[0].level = person.level + 1;
+                        peopleToExplore.push(person.relationship.children[0])
+                    } else {
+                        person.relationship.children[0].level = person.level + 1;
+                        person.relationship.children[1].level = person.level + 1;
+                        makeSingleNeighbor(person.relationship.children[0], person.relationship.children[1])
+                        peopleToExplore.push(person.relationship.children[0]);
+                        peopleToExplore.push(person.relationship.children[1]);
+                    }
+                }
+
+                person.explored = true;
+                for (const personToExplore of peopleToExplore) {
+                    console.log(`Exploring ${personToExplore.name} (discovered from ${person.name})`);
+                    explorePerson(personToExplore)
+                }
+            }
+            // as for cross-level alignment: lines of descent can be between two siblings or to one sibling
+            // give each couple a LoD index that matches the only child's withinLevel or is avg of siblings withinLevel
+            // then resolve relWithinLevel 
+            // maybe redo each Relationship: each person has one Relationship, it includes parents, sibling, and partner
+            // add relationships after people are constructed so each relationship can reference people and not uuids
+
+            //people[0].level = 0;
+            //explorePerson(people[0]);
+            // okay, we have a tree, now to find out where people are in it
+            /**
+             * @param {Person} person
+             * @param {Person} fromPerson
+            */
+            function drawPeople(person, fromPerson) {
+                if (person.drawn) {
+                    console.log(`aborting drawing of ${person.name} because they have already been drawn`);
+                    return false;
+                }
+                let x;
+                let y;
+                if (fromPerson == null) {
+                    // I AM ROOT!!
+                    x = 0;
+                    y = 0;
+                } else {
+                    let fromPersonPos = fromPerson.element.getBoundingClientRect();
+                    if (fromPerson.onLeft == person) {
+                        x = fromPersonPos.left - fromPersonPos.width - HORIZ_SPACING;
+                        y = fromPersonPos.top;
+                    } else if (fromPerson.onRight == person) {
+                        x = fromPersonPos.right + HORIZ_SPACING;
+                        y = fromPersonPos.top;
+                    } else if (person.relationship.parents.includes(fromPerson)) {
+                        let center_x;
+                        if (fromPerson.relationship.partner == undefined) {
+                            center_x = (fromPersonPos.width / 2) + fromPersonPos.left
+                        } else if (fromPerson.relationship.partner == fromPerson.onLeft) {
+                            center_x = fromPersonPos.left - (fromPersonPos.left - fromPerson.onLeft.element.getBoundingClientRect().right) / 2
+                        } else if (fromPerson.relationship.partner == fromPerson.onRight) {
+                            center_x = fromPersonPos.right + (-fromPersonPos.right + fromPerson.onRight.element.getBoundingClientRect().left) / 2
+                        } else {
+                            throw new Error(`Unable to determine relative location of ${fromPerson} and ${fromPerson.partner}`);
+                        }
+                        if (person.relationship.sibling == undefined) {
+                            x = center_x;
+                        } else if (fromPerson.relationship.sibling == fromPerson.onLeft) {
+                            x = center_x + HORIZ_SPACING / 2
+                        } else if (fromPerson.relationship.sibling == fromPerson.onRight) {
+                            x = center_x - HORIZ_SPACING / 2 - fromPersonPos.width
+                        } else {
+                            throw new Error(`Unable to determine relative location of ${fromPerson} and ${fromPerson.sibling}`);
+                        }
+                        y = fromPersonPos.bottom + VERT_SPACING;
+                    } else if (person.relationship.children.includes(fromPerson)) {
+                        let center_x;
+                        if (fromPerson.relationship.sibling == undefined) {
+                            center_x = (fromPersonPos.width / 2) + fromPersonPos.left
+                        } else if (fromPerson.relationship.sibling == fromPerson.onLeft) {
+                            center_x = fromPersonPos.left - (fromPersonPos.left - fromPerson.onLeft.element.getBoundingClientRect().right) / 2
+                        } else if (fromPerson.relationship.sibling == fromPerson.onRight) {
+                            center_x = fromPersonPos.right + (-fromPersonPos.right + fromPerson.onRight.element.getBoundingClientRect().left) / 2
+                        } else {
+                            throw new Error(`Unable to determine relative location of ${fromPerson} and ${fromPerson.sibling}`);
+                        }
+                        if (person.relationship.partner == undefined) {
+                            x = center_x - (fromPersonPos.width / 2);
+                        } else if (fromPerson.relationship.partner == fromPerson.onLeft) {
+                            x = center_x + HORIZ_SPACING / 2
+                        } else if (fromPerson.relationship.partner == fromPerson.onRight) {
+                            x = center_x - HORIZ_SPACING / 2 - fromPersonPos.width
+                        } else {
+                            throw new Error(`Unable to determine relative location of ${fromPerson} and ${fromPerson.partner}`);
+                        }
+                        y = fromPersonPos.top - VERT_SPACING;
+                    } else {
+                        throw new Error(`Unable to determine relationship from ${person.name} to ${fromPerson.name}`)
+                    }
+                }
+
+                // catch overlaps
+                for (const possPerson of people) {
+                    if (possPerson == person) {
+                        continue
+                    }
+                    if (!possPerson.drawn) {
+                        continue
+                    }
+                    const possPersonPos = possPerson.element.getBoundingClientRect();
+                    if (possPersonPos.top == y && possPersonPos.left == x) {
+                        console.log(`AA OVERLAP of ${person.name} and ${possPerson.name}`);
+                        const splittingX = x;
+                        let personDirDontcare = false;
+                        const overlapOffset = (HORIZ_SPACING + possPersonPos.width) / 2
+                        // only one neighbor should have been drawn yet max
+                        // use this to figure out which way the person needs to go (the direction of their neighbor)
+                        if (person.onRight != undefined) {
+                            x += overlapOffset;
+                        } else if (person.onLeft != undefined) {
+                            x -= overlapOffset;
+                        } else {
+                            personDirDontcare = true;
+                        }
+                        for (const movingPerson of people) {
+                            if (!movingPerson.drawn) {
+                                continue
+                            }
+                            const movingPersonPos = movingPerson.element.getBoundingClientRect();
+                            if (movingPerson == person) {
+                                continue;
+                            }
+                            if (movingPerson == possPerson) {
+                                if (movingPerson.onRight != undefined && movingPerson.onRight.drawn) {
+                                    movingPerson.element.style.left = `${movingPersonPos.left + (overlapOffset)}px`;
+                                } else if (movingPerson.onLeft != undefined && movingPerson.onLeft.drawn) {
+                                    movingPerson.element.style.left = `${movingPersonPos.left - (overlapOffset)}px`;
+                                } else {
+                                    if (personDirDontcare) {
+                                        x -= overlapOffset;
+                                        movingPerson.element.style.left = `${movingPersonPos.left + (overlapOffset)}px`;
+                                    } else {
+                                        if (x > splittingX) {
+                                            movingPerson.element.style.left = `${movingPersonPos.left - (overlapOffset)}px`;
+                                        } else {
+                                            movingPerson.element.style.left = `${movingPersonPos.left + (overlapOffset)}px`;
+                                        }
+                                    }
+                                }
+                                continue;
+                                continue;
+                            }
+
+                            if (movingPersonPos.left < splittingX) {
+                                movingPerson.element.style.left = `${movingPersonPos.left - (overlapOffset)}px`;
+                            } else if (movingPersonPos.left > splittingX) {
+                                movingPerson.element.style.left = `${movingPersonPos.left + (overlapOffset)}px`;
+                            }
+                        }
+                    }
+                }
+
+                person.element = createPersonElement(person, x, y);
+                document.getElementById("tree-container").appendChild(person.element);
+                const personPos = person.element.getBoundingClientRect();
+                person.drawn = true;
+
+                /** @type {Person[]} */
+                let peopleToDraw = [person.onLeft, person.onRight].concat(person.relationship.children, person.relationship.parents);
+                for (const personToDraw of peopleToDraw) {
+                    if (personToDraw == undefined) {
+                        continue;
+                    }
+                    console.log(`Drawing ${personToDraw.name} (discovered from ${person.name})`);
+                    if (drawPeople(personToDraw, person)) {
+                        // person was drawn successfully
+                        const p2DPos = personToDraw.element.getBoundingClientRect();
+                        // TODO: pull lines out somewhere else
+                        if (personToDraw.relationship.partner == person) {
+                            drawLineBetween((personPos.width / 2) + personPos.left, personPos.top + COUPLE_LINE_TOP_OFFSET, (p2DPos.width / 2) + p2DPos.left, personPos.top + COUPLE_LINE_TOP_OFFSET)
+                        }
+                    }
+                }
+                return true;
+            }
+
+            //drawPeople(people[0], null);
+            // debugger;
+            // two: render tree
+            // three: render lines between people
+        }
+
+    </script>
+</body>
+
+</html>
