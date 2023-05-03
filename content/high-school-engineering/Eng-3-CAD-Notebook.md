@@ -45,3 +45,6 @@ The documents I worked in are available [here](https://cvilleschools.onshape.com
 ![My certification](/docs/assemblycert.png "My certification.")
 ### Reflection
 This course was a nice refreshed for the various types of mates, and there was an extremely helpful chart provided [here](https://learn.onshape.com/learn/course/fundamentals-onshape-assemblies/mating-assembly-components/onshape-mate-types?page=3). The big thing I learned was how to make new mate connectors between entities, and I look forward to applying this in the future.
+## Onshape Associate Certification
+### Certificate
+[View certificate](https://ti-user-certificates.s3.amazonaws.com/6e557ed6-d03d-4c48-9492-4d18d145d7a1/729fc274-0a08-4761-a323-b6750b30207c-river-lewis-468af82a-98b9-4c02-95c5-f618a570c4e8-certificate.pdf)
