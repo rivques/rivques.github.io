@@ -44,7 +44,7 @@ We knew from the start this program would be asynchronous, as we wanted to run b
 ### Async input
 One of the more interesting problems we ran into was that of taking user input asynchronously. We needed a coroutine that we could `await` that would return when the user had entered input but allow other tasks to happen while waiting on the input. We eventually ended up doing this by polling `supervisor.runtime.serial_bytes_available`, which is `True` when there is data waiting on the serial line, and calling `await asyncio.sleep(0)` while there was nothing to allow other tasks to run.
 ## Memory issues (in Python! what fun!)
-While figuring out how to make the TUI continuously update, We started running into hard-to-pin-down `MemoryErrors`. After generous logging (which somewhat exacerbated the issue, because `logging` records take up memory even if they aren't printed) and digging through the `asyncio`'s code, we realized the issues stemmed from our use of `asyncio.run()`, like this:
+While figuring out how to make the TUI continuously update, we started running into hard-to-pin-down `MemoryErrors`. After generous logging (which somewhat exacerbated the issue, because `logging` records take up memory even if they aren't printed) and digging through the `asyncio`'s code, we realized the issues stemmed from our use of `asyncio.run()`, like this:
 ```python
 async def run_ui(self):
     # ...
