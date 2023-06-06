@@ -2,6 +2,7 @@
 title: "Engineering 3 CAD Notebook"
 date: 2022-10-25T11:34:49-0400
 draft: false
+tocopen: true
 ---
 ## Propeller Toy/Collaborative Onshape
 ### Assignment

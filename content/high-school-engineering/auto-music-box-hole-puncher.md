@@ -2,6 +2,7 @@
 title: "Auto Music Box Hole Puncher"
 date: 2023-03-18T21:58:42-0400
 draft: false
+tocopen: true
 ---
 # Assignment
 For this assignment, we had to build a robot arm. To narrow down the endless possibilities, every student in the class came up with a problem or two they wanted to solve with a robotic arm and pitched it to the rest of the class. People picked projects they thought looked interesting, and groups of two were formed. Our group, Lucia Whitmore @lwhitmo and River Lewis @rivques wanted to create a robotic arm to automate the process of programming music boxes. This is done by punching holes in a paper tape to indicate notes and timing. We opted to use a gantry, as we had very independent orthogonal axes (X is note, Y is time, Z is punching axis) and wanted rigidity and accuracy.

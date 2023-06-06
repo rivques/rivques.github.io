@@ -87,3 +87,9 @@ menu:
     #   weight: 40
 
 pluralizelisttitles: "false"
+
+markup:
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 1

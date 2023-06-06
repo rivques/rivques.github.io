@@ -2,6 +2,7 @@
 title: "Engineering 3 Code Notebook"
 date: 2022-10-25T11:34:44-0400
 draft: false
+tocopen: true
 ---
 ## `neopixel.py`
 A basic test of the M4's onboard NeoPixel. Flashes through off, red, green, and blue.
