@@ -4,7 +4,7 @@ date: 2023-08-28T11:34:44-0400
 draft: false
 tocopen: true
 ---
-# The main repository is located [here](https://github.com/rivques/Engr4Code).
+# The main code repository is located [here](https://github.com/rivques/Engr4Code).
 ## Media test:
 ![My profile picture](https://avatars.githubusercontent.com/u/38469076?s=400&u=3ce10d01190bcef83bee3d286e2c631144cc1ebc&v=4 "My profile picture")
 ![A previous project of mine running](/docs/WTPIDC/running.gif "A test GIF") 
@@ -25,3 +25,11 @@ This is the second assignment in the launchpad series. We had to add a red flash
 ### Reflection
 This went mostly without hitches, but there was one nuance: When a CircuitPython ends, all hardware is deinitialized and set to an input. This turns off all connected components.
 Because of this, when my program immediately ended after turning on the green LED it turned right back off. To prevent this I added an infinite loop at the end of the program.
+## Launchpad part 3
+This is the third assignment in the launchpad series. We added a button that could start and stop the countdown.
+### Media
+![A GIF of the abort button being used](/docs/eng-4/launch3.gif "The launchpad being started and aborted.")
+### Wiring
+![The schematic](/docs/eng-4/launch3schem.png "The schematic for this assignment")
+### Reflection
+I did the spicy option here, which involved adding an abort button. This was non-trivial because I had to watch the button *while delaying.* A full async framework would have been overkill for this, so I just wait for 0.05 seconds then check the button for 20 times.
