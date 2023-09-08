@@ -33,3 +33,11 @@ This is the third assignment in the launchpad series. We added a button that cou
 ![The schematic](/docs/eng-4/launch3schem.png "The schematic for this assignment")
 ### Reflection
 I did the spicy option here, which involved adding an abort button. This was non-trivial because I had to watch the button *while delaying.* A full async framework would have been overkill for this, so I just wait for 0.05 seconds then check the button for 20 times.
+## Launchpad part 4
+This is the fourth assignment in the launchpad series. We added a servo to "release the rocket" as the clock hit zero It had to start its move at T-3 and smoothly finish at T-0.
+### Media
+![A GIF of the abort button being used with the servo sweeping](/docs/eng-4/launch4.gif "The launchpad being aborted as the servo sweeps.")
+### Wiring
+![The schematic](/docs/eng-4/launch4schem.png "The schematic for this assignment")
+### Reflection
+Having to make the servo move smoothly made me realize the way I wrote part 3 was *really inextensible.* I had apparently forgotten about being able to use `time.monotonic()` instead of `time.sleep()` for doing stuff while delaying. With the help of Arduino's `map()` function, I was able to get the servo moving pretty smoothly.
