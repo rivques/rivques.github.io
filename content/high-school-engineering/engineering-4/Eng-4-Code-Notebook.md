@@ -41,3 +41,11 @@ This is the fourth assignment in the launchpad series. We added a servo to "rele
 ![The schematic](/docs/eng-4/launch4schem.png "The schematic for this assignment")
 ### Reflection
 Having to make the servo move smoothly made me realize the way I wrote part 3 was *really inextensible.* I had apparently forgotten about being able to use `time.monotonic()` instead of `time.sleep()` for doing stuff while delaying. With the help of Arduino's `map()` function, I was able to get the servo moving pretty smoothly.
+## Crash avoidance part 1
+This is the first in a series of assignments in which I build a simulated crash avoicance system for a helicopter. For this assignment I had to read the acceleration values off on an accelerometer.
+### Media
+![A GIF of the console logging acceleration values as I turn the board around.](/docs/eng-4/crash1.gif "The accelerometer logging values.")
+### Wiring
+![The schematic](/docs/eng-4/crash1schem.png "The schematic for this assignment")
+### Reflection
+This went really smoothly. The one small hitch was that I forgot to put a `sleep()` in the main loop to begin with, so the accelerations were logged at max speed. I added a half-second sleep and everything was fine.
