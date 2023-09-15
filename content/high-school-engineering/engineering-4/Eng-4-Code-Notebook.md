@@ -49,3 +49,11 @@ This is the first in a series of assignments in which I build a simulated crash 
 ![The schematic](/docs/eng-4/crash1schem.png "The schematic for this assignment")
 ### Reflection
 This went really smoothly. The one small hitch was that I forgot to put a `sleep()` in the main loop to begin with, so the accelerations were logged at max speed. I added a half-second sleep and everything was fine.
+## Crash avoidance part 2
+This is the second assignment in the crash avoidance series. We added an LED to indicate when the board was dangerously tilted and a battery so the board could be carried around.
+### Media
+![A GIF of the LED lighting as I turn the board around.](/docs/eng-4/crash2.gif "The danger LED illuminating.")
+### Wiring
+![The schematic](/docs/eng-4/crash2schem.png "The schematic for this assignment")
+### Reflection
+To detect if we're at a dangerous tile, I just check if the absolute value of the Z component of the acceleration is less than 1 m/s². This is a fairly naive way of doing things, and if I wanted to detect a different angle I would need to do more complex trig. However, it works for this assignment, and it's simple, so it's staying.
