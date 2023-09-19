@@ -50,7 +50,7 @@ This is the first in a series of assignments in which I build a simulated crash 
 ### Reflection
 This went really smoothly. The one small hitch was that I forgot to put a `sleep()` in the main loop to begin with, so the accelerations were logged at max speed. I added a half-second sleep and everything was fine.
 ## Crash avoidance part 2
-This is the second assignment in the crash avoidance series. We added an LED to indicate when the board was dangerously tilted and a battery so the board could be carried around.
+This is the second assignment in the crash avoidance series. I added an LED to indicate when the board was dangerously tilted and a battery so the board could be carried around.
 ### Media
 ![A GIF of the LED lighting as I turn the board around.](/docs/eng-4/crash2.gif "The danger LED illuminating.")
 ### Wiring
@@ -58,7 +58,7 @@ This is the second assignment in the crash avoidance series. We added an LED to 
 ### Reflection
 To detect if we're at a dangerous tile, I just check if the absolute value of the Z component of the acceleration is less than 1 m/s². This is a fairly naive way of doing things, and if I wanted to detect a different angle I would need to do more complex trig. However, it works for this assignment, and it's simple, so it's staying.
 ## Crash avoidance part 3
-This is the third assignment in the crash avoidance series. We added an LED to indicate when the board was dangerously tilted and a battery so the board could be carried around.
+This is the third assignment in the crash avoidance series. I added a gyroscpe to report rotation rate.
 ### Media
 ![A GIF of the gyro values on the OLED as I turn the board around.](/docs/eng-4/crash3.gif "The gyroscope reporting values.")
 ### Wiring
@@ -66,3 +66,11 @@ This is the third assignment in the crash avoidance series. We added an LED to i
 ### Reflection
 When I was making the schematic for part 3, things got a little more cluttered than I liked. To fix this, I used net labels for common power rails and busses to
 reduce the number of wires in the schematic. It was a bit of a pain doing this now, and I should have done it from the start.
+## Crash avoidance part 4
+This is the fourth assignment in the crash avoidance series. I added an altimeter to not activate the altitude alarm if the board had risen at least 3 meters.
+### Media
+![A GIF of the LED not going off after I have gone up some stairs.](/docs/eng-4/crash4.gif "The light doesn't activate if I go upstairs.")
+### Wiring
+![The schematic](/docs/eng-4/crash4schem.png "The schematic for this assignment")
+### Reflection
+I had to relearn a bit of the Python f-string formatting language. ([Here's a link to the docs for the future.](https://docs.python.org/3/library/string.html#formatspec)) In this case I had to make a 3-digit fixed point representation of the number with a space used in place of a plus sign, so the code was `: .3f`.
