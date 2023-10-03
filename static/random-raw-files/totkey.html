@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTKey Interface</title>
+    <script src="totkey.js" defer></script>
+    <style>
+        ::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>TOTKey Interface</h1> 
+    <h2>
+    <a href="https://github.com/rivques/TOTKey">GitHub</a>
+    </h2>
+    <div class="connection-options">
+        <button id="connect">Connect</button>
+        <button id="disconnect">Disconnect</button>
+    </div>
+    <h2>Time</h2>
+    <div class="time-info">
+        <p>Computer time: <span  id="computer-time"></span>
+        <br>Key time: <span id="key-time"></span>
+        <br>Difference: <span id="time-difference"></span></p>
+        <button id="sync-time">Sync</button>
+    </div>
+    <h2>Battery</h2>
+    <div class="battery-info">
+        <p>Battery voltage: <span id="battery-voltage"></span></p>
+    </div>
+    <h2>Keys</h2>
+    <div id="key-list">
+    </div>
+    <dialog id="remove-confirm-dialog">
+        <form>
+            <label>Are you sure you want to remove <span id="remove-confirm-key"></span>?</label>
+            <button id="remove-cancel">Cancel</button>
+            <button id="remove-confirm">Remove</button>
+        </form>
+    </dialog>
+    <button id="add-key-start">Add key</button>
+    <dialog id="add-key-modal">
+        <form id="add-key-form" method="dialog">
+            <label>Service name:</label>
+            <input type="text" id="add-key-service-name">
+            <label>Secret:</label>
+            <input type="text" id="add-key-secret">
+            <input type="submit" id="add-key-cancel" value="Cancel">
+            <input type="submit" id="add-key-confirm" value="Add">
+        </form>
+    </dialog>
+</body>
+</html>
