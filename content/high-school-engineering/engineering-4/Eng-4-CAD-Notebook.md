@@ -7,6 +7,8 @@ tocopen: true
 # FEA Beam Part 1
 ## Assignment
 This assignment is the first part of our introduction to finite element analysis (FEA), a technique for simulating how strong a design will be. We were challenged to make a 180mm cantilevered beam that could support the most weight among the class without flexing more than 35mm. The beam would be 3D printed in PLA and weigh no more than 13 grams. For the first part of the assignment, we couldn't use FEA and had to design our best guess at a strong beam based off of our research and intuition. To start, my partner Jayden and I each designed our own beam; planning to use whoever's worked better.
+## Document
+The Onshape document is available [here](https://cvilleschools.onshape.com/documents/479a5d24056fdd56c88b8dd8/w/2625b665548c3edd606623e9/e/cb89638e4836cd8112d49f1b?renderMode=10&uiState=651d682066bcfe34cbaa2990).
 ## My Beam
 ### Images
 ![A wide view of my beam](/docs/eng-4/beamwide.png "A wide view of my beam. The grey part is the testing apparatus.")
