@@ -20,3 +20,11 @@ I went with an inverted T-beam as the base shape because that design did well la
 ### Design Reasoning
 Here's Jayden's reasoning for his design:
 > I went with a triangular design mostly on a whim, but it wasn't completely silly. Triangles are strong, and I made it hollow to keep that strength while also making it as light as possible. I put tiny support beams inside of it because I figured that they *might* help, but I'm not completely sure what they'll do. Essentially, I made a big Toblerone and hoped for the best. The main issue is that the part where the weights will hang from looks like it'll just snap off.
+# FEA Beam Part 2
+## Assignment
+This assignment is an FEA analysis of the beam designed in part one. It will inform our future designs and tell us where we need add material and where we can afford to lighten.
+## FEA Images
+![A screenshot of the FEA displacement simulation.](/docs/eng-4/displ.png "A screenshot of the FEA displacement simulation.")
+![A screenshot of the FEA stress simulation.](/docs/eng-4/stress.png "A screenshot of the FEA stress simulation.")
+## Analysis
+The stress is much stronger at the base of the beam, so I'll move material there. I'll get the mass budget to do this by removing material near the tip of the beam. The lightenting hoels are also very stressed, so I'll remove those from areas that are already high-stress.
