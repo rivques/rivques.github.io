@@ -58,4 +58,8 @@ We were going to go with my beam because it had slightly better deflection. Howe
 # FEA Beam Continued Iteration
 I attempted to remove my overhangs while keeping the root of the beam strong and added a taper in the central T so it got thinner at the end of the beam. Jayden reinforced his beam where it broke.
 ## My Beam V2
+![My newest beam](/docs/eng-4/newnewbeam.png "My beam V2, designed after the test.")
+### FEA
+![A screenshot of the FEA displacement simulation.](/docs/eng-4/newnewdispl.png "A screenshot of V2's displacement.")
+![A screenshot of the FEA stress simulation.](/docs/eng-4/newnewstress.png "A screenshot of V2's stress. Note that the root of the beam is somewhat less stressed.")
 ## Jayden's Beam V2
