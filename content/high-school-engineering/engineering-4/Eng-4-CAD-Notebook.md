@@ -46,13 +46,15 @@ The stress is much stronger at the base of the beam, so I'll move material there
 ![A screenshot of the FEA stress simulation.](/docs/eng-4/newbeamstress.png "A screenshot of the new FEA stress simulation. Note that the stress is mostly even, except for the root of the beam.")
 ## Jayden's Beam
 ### New Version
+![Jayden's new beam](/docs/eng-4/jaydennewwide.png "Jayden's new beam. This is the one we tested.")
 ### FEA
+![A screenshot of the FEA displacement simulation.](/docs/eng-4/jaydennewdispl.png "A screenshot of Jayden's new FEA displacement simulation.")
+![A screenshot of the FEA stress simulation.](/docs/eng-4/jaydennewstress.png "A screenshot of Jayden's new FEA stress simulation.")
 # FEA Beam Testing
 ## Beam Selection
 We were going to go with my beam because it had slightly better deflection. However, at the last minute we realized that my beam had illegal overhangs, so we pivoted to Jayden's beam, which was nearly as good.
 ## Beam Testing
-video goes here
-once it exists
+![gif of testing](/docs/eng-4/firsttest.gif "Me weight-testing the beam. The moment of breaking wasn't captured due to a camera issue.")
 # FEA Beam Continued Iteration
 I attempted to remove my overhangs while keeping the root of the beam strong and added a taper in the central T so it got thinner at the end of the beam. Jayden reinforced his beam where it broke.
 ## My Beam V2
