@@ -63,3 +63,9 @@ I attempted to remove my overhangs while keeping the root of the beam strong and
 ![A screenshot of the FEA displacement simulation.](/docs/eng-4/newnewdispl.png "A screenshot of V2's displacement.")
 ![A screenshot of the FEA stress simulation.](/docs/eng-4/newnewstress.png "A screenshot of V2's stress. Note that the root of the beam is somewhat less stressed.")
 ## Jayden's Beam V2
+![A picture of Jayden's newest beam.](/docs/eng-4/jaydennewest.png "Jayden's newest beam. Note the extra material near the root of the beam. ")
+# FEA Beam Final Testing
+## Beam selection
+At the deadline, our final simulations revealed that while my beam had a lower max stress, Jayden's had less displacement, and because our last beam failed by bending and not breaking we went with his. It was a well balanced beam, as had it not broken it would have failed by deflection at the same weight.
+## Media
+![A GIF of our beam breaking.](/docs/eng-4/breaktest2.gif "A GIF of our beam breaking.")
