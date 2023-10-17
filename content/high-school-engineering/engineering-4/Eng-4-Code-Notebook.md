@@ -74,3 +74,11 @@ This is the fourth assignment in the crash avoidance series. I added an altimete
 ![The schematic](/docs/eng-4/crash4schem.png "The schematic for this assignment")
 ### Reflection
 I had to relearn a bit of the Python f-string formatting language. ([Here's a link to the docs for the future.](https://docs.python.org/3/library/string.html#formatspec)) In this case I had to make a 3-digit fixed point representation of the number with a space used in place of a plus sign, so the code was `: .3f`.
+## Landing zone part 1
+This is the first in a series of assignments in which I build a simulated landing zone evaluator. For this assignment I just had to get the area of a single landing zone, using the power of functions.
+### Media
+![A GIF of the console working.](/docs/eng-4/land1terminal.gif "The console figuring out the area of a triangle.")
+### Wiring
+No wiring was needed for this assignment.
+### Reflection
+This was the first time I recorded my screen using WeVideo. I quickly discovered that it does not nicely scale up screen recordings. To work around this I used a massively zoomed in PowerShell terminal instead of the native VS Code terminal to run the code.
