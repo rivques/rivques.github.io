@@ -56,7 +56,7 @@ This is the second assignment in the crash avoidance series. I added an LED to i
 ### Wiring
 ![The schematic](/docs/eng-4/crash2schem.png "The schematic for this assignment")
 ### Reflection
-To detect if we're at a dangerous tile, I just check if the absolute value of the Z component of the acceleration is less than 1 m/s². This is a fairly naive way of doing things, and if I wanted to detect a different angle I would need to do more complex trig. However, it works for this assignment, and it's simple, so it's staying.
+To detect if we're at a dangerous tilt, I just check if the absolute value of the Z component of the acceleration is less than 1 m/s². This is a fairly naive way of doing things, and if I wanted to detect a different angle I would need to do more complex trig. However, it works for this assignment, and it's simple, so it's staying.
 ## Crash avoidance part 3
 This is the third assignment in the crash avoidance series. I added a gyroscpe to report rotation rate.
 ### Media
@@ -75,6 +75,7 @@ This is the fourth assignment in the crash avoidance series. I added an altimete
 ### Reflection
 I had to relearn a bit of the Python f-string formatting language. ([Here's a link to the docs for the future.](https://docs.python.org/3/library/string.html#formatspec)) In this case I had to make a 3-digit fixed point representation of the number with a space used in place of a plus sign, so the code was `: .3f`.
 ## Landing zone part 1
+### Assignment
 This is the first in a series of assignments in which I build a simulated landing zone evaluator. For this assignment I just had to get the area of a single landing zone, using the power of functions.
 ### Media
 ![A GIF of the console working.](/docs/eng-4/land1terminal.gif "The console figuring out the area of a triangle.")
@@ -82,3 +83,12 @@ This is the first in a series of assignments in which I build a simulated landin
 No wiring was needed for this assignment.
 ### Reflection
 This was the first time I recorded my screen using WeVideo. I quickly discovered that it does not nicely scale up screen recordings. To work around this I used a massively zoomed in PowerShell terminal instead of the native VS Code terminal to run the code.
+## Landing zone part 1
+### Assignment
+This is the second assignment in the landing zone series. I added an OLED to graphically display the landing zone location.
+### Media
+![A GIF of the console working.](/docs/eng-4/land2.gif "The console figuring out the area of a triangle and displaying it on an OLED.")
+### Wiring
+![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment")
+### Reflection
+I had to do some interesting math to transform the given points (relative to the base at the center of the screen with positive Y being up) to the OLED coordinate space (relative to the top-left corner of the screen with positive Y being down). I initially didn't do this properly and spent a while trying to figure out why I couldn't see the triangle that was being rendered off-screen. For the future: To flip the Y axis around, subtract the given value *from* the location of the x-axis, not the other way around.
