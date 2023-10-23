@@ -87,7 +87,7 @@ This was the first time I recorded my screen using WeVideo. I quickly discovered
 ### Assignment
 This is the second assignment in the landing zone series. I added an OLED to graphically display the landing zone location.
 ### Media
-![A GIF of the console working.](/docs/eng-4/land2.gif "The console figuring out the area of a triangle and displaying it on an OLED.")
+![A GIF of the display working.](/docs/eng-4/land2.gif "The console figuring out the area of a triangle and displaying it on an OLED.")
 ### Wiring
 ![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment")
 ### Reflection
@@ -96,7 +96,7 @@ I had to do some interesting math to transform the given points (relative to the
 ### Assignment
 This is the third and final assignment in the landing zone series. I now evaluate many landing zones in succession and pick the closest one with an area greater than 100km².
 ### Media
-
+![A GIF of the display and console evaluating multiple triangles](/docs/eng-4/land3.gif "The console and display evaluating multiple triangles, then picking the best one.")
 ### Wiring
 ![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment. It's the same as part 2.")
 ### Reflection
