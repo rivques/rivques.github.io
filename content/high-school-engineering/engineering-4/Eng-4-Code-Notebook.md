@@ -83,7 +83,7 @@ This is the first in a series of assignments in which I build a simulated landin
 No wiring was needed for this assignment.
 ### Reflection
 This was the first time I recorded my screen using WeVideo. I quickly discovered that it does not nicely scale up screen recordings. To work around this I used a massively zoomed in PowerShell terminal instead of the native VS Code terminal to run the code.
-## Landing zone part 1
+## Landing zone part 2
 ### Assignment
 This is the second assignment in the landing zone series. I added an OLED to graphically display the landing zone location.
 ### Media
