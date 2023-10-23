@@ -92,3 +92,12 @@ This is the second assignment in the landing zone series. I added an OLED to gra
 ![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment")
 ### Reflection
 I had to do some interesting math to transform the given points (relative to the base at the center of the screen with positive Y being up) to the OLED coordinate space (relative to the top-left corner of the screen with positive Y being down). I initially didn't do this properly and spent a while trying to figure out why I couldn't see the triangle that was being rendered off-screen. For the future: To flip the Y axis around, subtract the given value *from* the location of the x-axis, not the other way around.
+## Landing zone part 3
+### Assignment
+This is the third and final assignment in the landing zone series. I now evaluate many landing zones in succession and pick the closest one with an area greater than 100km².
+### Media
+
+### Wiring
+![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment. It's the same as part 2.")
+### Reflection
+While I had heard of a centroid before, I've never had to calculate one. Turns out it's just the average positions of the vertexes. Then it's just iterating through all the triangles and running the area code I developed previously, with a little bit of filtering to make sure the triangle it spits out conforms to the given criteria.
