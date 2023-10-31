@@ -110,3 +110,21 @@ This is the first of a series of assignments in which I build some tools for usi
 There is no wiring for this assignment.
 ### Reflection
 I wanted to gracefully fail if the user tried to send a character I din't know how to translate. To do this, I had to break out of nested loops (the main `while True`, and the `for` loop looping over the characters in the input). I ended up setting a flag variable if the translation was bad and only showing the result if everything went through properly. I could have used Python's `for...else` construction, but I'm trying to stop using that as it's not super intuitive nor does it have equivalents in other languages.
+## Morse code part 2
+### Assignment
+This is the second assignment in the Morse code series. For this assignment I had to blink out the message on an LED.
+### Media
+![A GIF of an LED flashing out "SOS" in Morse Code](/docs/eng-4/morse2.gif "'SOS' being flashed out in Morse code")
+### Wiring
+![The schematic](/docs/eng-4/morse2schem.png "The schematic for this assignment")
+### Reflection
+I continued to use dictionaries, the focus of these assignments, for this task. I made a dictionary of how each type of blink lasted on and off:
+```python
+CHAR_DELAYS = {
+    ".": [base_delay, base_delay],
+    "-": [3*base_delay, base_delay],
+    " ": [0, 3*base_delay],
+    "/": [0, 7*base_delay]
+}
+```
+(space is between characters, / is between words). This made it easy to quickly go from the translated string I produced in part 1 to an LED output.
