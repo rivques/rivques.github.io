@@ -101,3 +101,12 @@ This is the third and final assignment in the landing zone series. I now evaluat
 ![The schematic](/docs/eng-4/land2schem.png "The schematic for this assignment. It's the same as part 2.")
 ### Reflection
 While I had heard of a centroid before, I've never had to calculate one. Turns out it's just the average positions of the vertexes. Then it's just iterating through all the triangles and running the area code I developed previously, with a little bit of filtering to make sure the triangle it spits out conforms to the given criteria.
+## Morse code part 1
+### Assignment
+This is the first of a series of assignments in which I build some tools for using Morse code. For this one I had to translate an English string into a string of Morse code.
+### Media
+![A GIF of the terminal translating Morse code.](/docs/eng-4/morse1.gif "A GIF of the terminal translating Morse code.")
+### Wiring
+There is no wiring for this assignment.
+### Reflection
+I wanted to gracefully fail if the user tried to send a character I din't know how to translate. To do this, I had to break out of nested loops (the main `while True`, and the `for` loop looping over the characters in the input). I ended up setting a flag variable if the translation was bad and only showing the result if everything went through properly. I could have used Python's `for...else` construction, but I'm trying to stop using that as it's not super intuitive nor does it have equivalents in other languages.
