@@ -128,3 +128,11 @@ CHAR_DELAYS = {
 }
 ```
 (space is between characters, / is between words). This made it easy to quickly go from the translated string I produced in part 1 to an LED output.
+## Data logging part 1
+This is the first in a series of assignments in which I make use of the Pico's ability to log data to its onboard storage. For this assignment, we had to log the data we got from [crash avoidance part 2](#crash-avoidance-part-2) to disk for later analysis.
+### Media
+![A GIF of an LED turning on when the breadboard holding it is turned too much](/docs/eng-4/data1.gif "A very similar circuit to Crash Avoidance Part 2.")
+### Wiring
+![The schematic](/docs/eng-4/data1.png "The schematic for this assignment")
+### Reflection
+I benefitted a lot from documenting Crash Avoidance Part 2, because it made it easy to put this assignment together. Because this was the second time I assembled this circuit, I took the opportunity to try and compact it. By squeezing all the components right next to each other, I was barely able to get it to all fit on one half breadboard.
