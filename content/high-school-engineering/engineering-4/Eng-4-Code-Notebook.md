@@ -136,3 +136,14 @@ This is the first in a series of assignments in which I make use of the Pico's a
 ![The schematic](/docs/eng-4/data1.png "The schematic for this assignment")
 ### Reflection
 I benefitted a lot from documenting Crash Avoidance Part 2, because it made it easy to put this assignment together. Because this was the second time I assembled this circuit, I took the opportunity to try and compact it. By squeezing all the components right next to each other, I was barely able to get it to all fit on one half breadboard.
+## Data logging part 2
+### Assignment
+This is the second assignment in the data logging series. For this assignment I had to pull the data collected in part 1 into a Google sheet and make charts of it.
+### Wiring
+There was no wiring for this assignment.
+### Spreadheet
+The spreadsheet is available [here](https://docs.google.com/spreadsheets/d/1Y2E544ZOx9_VpaJZxjsb1yeVuzxpGZQG_cIz4Lp4DNs/edit?usp=sharing).
+### Media
+![A chart of acceleration over time.](/docs/eng-4/data2.png "The charts of the sensor data I collected.")
+### Reflection
+When I wrote my code, I didn't realize that logging the string "FALSE" and "TRUE" would cause problems when trying to plot. To fix this, in the plot I added another column that turned TRUE and FALSE into the numbers 0 and 1 with an `=IF()` call. This plotted nicely.
