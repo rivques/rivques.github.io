@@ -46,8 +46,8 @@ params:
     imageHeight: 120
     imageTitle: my logo
     buttons:
-      - name: Bakkesmod
-        url: bakkesmod
+      - name: Hack Club
+        url: hackclub
       - name: High School Engineering
         url: high-school-engineering
       - name: Other Random Projects
@@ -56,6 +56,8 @@ params:
   # home-info mode
 
   socialIcons:
+    - name: email
+      url: "mailto:rivques@rivques.dev"
     - name: discord
       url: "/discord"
     - name: github
@@ -69,9 +71,9 @@ params:
 
 menu:
   main:
-    - identifier: bakkesmod
-      name: Bakkesmod
-      url: /bakkesmod
+    - identifier: hackclub
+      name: Hack Club
+      url: /hackclub
       weight: 10
     - identifier: high-school-engineering
       name: High School Engineering

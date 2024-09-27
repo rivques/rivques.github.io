@@ -4,10 +4,10 @@ date: 2024-09-02T00:01:00-0400
 draft: false
 aliases: [/lbrnth]
 ---
-This is a port of the [Labyrinth board game](https://boardgamegeek.com/boardgame/1219/labyrinth) to the Sprig.
+This is a port of the [Labyrinth board game](https://boardgamegeek.com/boardgame/1219/labyrinth) to the [Sprig game console](https://sprig.hackclub.com). Play it online [here](https://sprig.hackclub.com/gallery/LabyrinthBoardGame)!
 
 ## How to Play
-This is designed as a pass-and=play game where the goal is to collect all of your artifacts from the shifting labyring before your opponents do. The game is played on a grid of maze tiles, many of which can be moved around. On your turn you'll shift the labyrinth, then move your player within the maze, trying to collect your target artifact. Once you've collected all of your artifacts, you win!
+This is designed as a pass-and-play game where the goal is to collect all of your artifacts from the shifting labyring before your opponents do. The game is played on a grid of maze tiles, many of which can be moved around. On your turn you'll shift the labyrinth, then move your player within the maze, trying to collect your target artifact. Once you've collected all of your artifacts, you win!
 
 ### Game Pieces
 * Tiles: These are the pieces that make up the labyrinth. Many can be moved around the board. They are black with white passages, with a light grey dotted line at the boundary of the tile.
