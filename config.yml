@@ -57,7 +57,7 @@ params:
 
   socialIcons:
     - name: email
-      url: "mailto:rivques@rivques.dev"
+      url: "mailto:web@rivques.dev"
     - name: discord
       url: "/discord"
     - name: github
