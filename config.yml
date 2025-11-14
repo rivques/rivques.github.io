@@ -46,10 +46,10 @@ params:
     imageHeight: 120
     imageTitle: my logo
     buttons:
-      - name: Hack Club
-        url: hackclub
       - name: High School Engineering
         url: high-school-engineering
+      - name: Hack Club
+        url: hackclub
       - name: Other Random Projects
         url: other-random-projects
 
@@ -74,7 +74,7 @@ menu:
     - identifier: hackclub
       name: Hack Club
       url: /hackclub
-      weight: 10
+      weight: 25
     - identifier: high-school-engineering
       name: High School Engineering
       url: /high-school-engineering
